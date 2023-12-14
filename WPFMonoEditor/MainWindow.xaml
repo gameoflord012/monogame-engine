@@ -1,0 +1,47 @@
+﻿<Window x:Class="WPFMonoEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFMonoEditor"
+        xmlns:userControls="clr-namespace:WPFMonoEditor.UserControls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition MinWidth="50"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+
+        <userControls:EditorWindow x:Name="EnityViewer" Grid.Column="0">
+            <TreeView>
+                <TreeViewItem Header="Root Item">
+                    <TreeViewItem Header="Child Item 1">
+                        <TreeViewItem Header="Grandchild Item 1.1" />
+                        <TreeViewItem Header="Grandchild Item 1.2" />
+                    </TreeViewItem>
+                    <TreeViewItem Header="Child Item 2">
+                        <TreeViewItem Header="Grandchild Item 2.1" />
+                        <TreeViewItem Header="Grandchild Item 2.2" />
+                    </TreeViewItem>
+                </TreeViewItem>
+            </TreeView>
+        </userControls:EditorWindow>
+
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
+        <GridSplitter Grid.Column="3" HorizontalAlignment="Stretch"/>
+
+        <userControls:EditorWindow x:Name="Inspector" Grid.Column="4">
+            <TextBox Text="Hello fucker"></TextBox>
+        </userControls:EditorWindow>
+    </Grid>
+</Window>
+
+    
