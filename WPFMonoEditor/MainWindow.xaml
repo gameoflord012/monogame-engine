@@ -10,37 +10,21 @@
     <Window.Resources>
         
     </Window.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="5"/>
             <ColumnDefinition MinWidth="50"/>
-            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="250"/>
         </Grid.ColumnDefinitions>
 
-        <userControls:EditorWindow x:Name="EnityViewer" Grid.Column="0">
-            <TreeView>
-                <TreeViewItem Header="Root Item">
-                    <TreeViewItem Header="Child Item 1">
-                        <TreeViewItem Header="Grandchild Item 1.1" />
-                        <TreeViewItem Header="Grandchild Item 1.2" />
-                    </TreeViewItem>
-                    <TreeViewItem Header="Child Item 2">
-                        <TreeViewItem Header="Grandchild Item 2.1" />
-                        <TreeViewItem Header="Grandchild Item 2.2" />
-                    </TreeViewItem>
-                </TreeViewItem>
-            </TreeView>
-        </userControls:EditorWindow>
-
+        <userControls:EnityView  Grid.Column="0"/>
         <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
+        <userControls:GameView Grid.Column="2"/>
         <GridSplitter Grid.Column="3" HorizontalAlignment="Stretch"/>
-
-        <userControls:EditorWindow x:Name="Inspector" Grid.Column="4">
-            <TextBox Text="Hello fucker"></TextBox>
-        </userControls:EditorWindow>
+        <userControls:InspectorView Grid.Column="4" />
     </Grid>
 </Window>
 

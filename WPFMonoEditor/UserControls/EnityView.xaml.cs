@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WPFMonoEditor.UserControls
 {
     /// <summary>
-    /// Interaction logic for EditorWindow.xaml
+    /// Interaction logic for EnityView.xaml
     /// </summary>
-    public partial class EditorWindow : UserControl
+    public partial class EnityView : UserControl
     {
-        public EditorWindow()
+        public EnityView()
         {
             InitializeComponent();
         }
