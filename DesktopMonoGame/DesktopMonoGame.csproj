@@ -12,8 +12,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Mics\**" />
+    <Compile Remove="Tests\**" />
     <EmbeddedResource Remove="Mics\**" />
+    <EmbeddedResource Remove="Tests\**" />
     <None Remove="Mics\**" />
+    <None Remove="Tests\**" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />
