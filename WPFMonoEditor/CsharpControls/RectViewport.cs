@@ -38,6 +38,7 @@ namespace WPFMonoEditor.CsharpControls
                 new Point(1, 1),
                 new Point(0, 1)
             };
+            
             mesh.TriangleIndices = new Int32Collection { 0, 3, 2, 0, 2, 1 };
 
             return new Viewport2DVisual3D()

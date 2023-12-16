@@ -1,3 +1,3 @@
 ﻿
-using var game = new DesktopMonoGame.Game1();
+using var game = DesktopMonoGame.CruZ.Instance();
 game.Run();
