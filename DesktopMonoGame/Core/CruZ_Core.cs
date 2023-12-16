@@ -1,14 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
+using MonoGame.Extended.ViewportAdapters;
 using System.ComponentModel;
+using System.Runtime.ConstrainedExecution;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace DesktopMonoGame
 {
     internal partial class CruZ : Game
     {
-        private GraphicsDeviceManager _graphics;
+        public OrthographicCamera Camera { get => _camera; set => _camera = value; }
+        public ViewportAdapter ViewportAdapter { get => _viewportAdapter; set => _viewportAdapter = value; }
 
         private CruZ()
         {
@@ -20,9 +24,13 @@ namespace DesktopMonoGame
 
         protected override void Initialize()
         {
+            base.Initialize();
+
             Initialize_ECS();
             GameInitialize();
-            base.Initialize();
+
+            ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 1280, 720);
+            Camera = new OrthographicCamera(_viewportAdapter);
         }
 
         protected override void LoadContent()
@@ -34,7 +42,15 @@ namespace DesktopMonoGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            Update_ECS(gameTime);
+            Input_Update(gameTime);
+            ECS_Update(gameTime);
+
+            Camera.ZoomOut(-Input_ScrollDeltaValue() * (float)gameTime.ElapsedGameTime.TotalSeconds * 0.01f);
+            if(_keyboardState.IsKeyDown(Keys.A))
+            {
+                Camera.Position -= Vector2.UnitX;
+            }
+
             base.Update(gameTime);
         }
 
@@ -43,7 +59,7 @@ namespace DesktopMonoGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            Draw_ECS(gameTime);
+            ECS_Draw(gameTime);
 
             #region comment
             //Matrix view = Matrix.Identity;
@@ -61,5 +77,9 @@ namespace DesktopMonoGame
             //base.Draw(gameTime);
             #endregion
         }
+
+        private GraphicsDeviceManager _graphics;
+        private OrthographicCamera _camera;
+        private ViewportAdapter _viewportAdapter;
     }
 }

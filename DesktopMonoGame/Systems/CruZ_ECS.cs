@@ -16,12 +16,12 @@ namespace DesktopMonoGame
             _world = new WorldBuilder().AddSystem(new RenderSystem()).Build();
         }
 
-        private void Update_ECS(GameTime gameTime)
+        private void ECS_Update(GameTime gameTime)
         {
             _world.Update(gameTime);
         }
 
-        private void Draw_ECS(GameTime gameTime)
+        private void ECS_Draw(GameTime gameTime)
         {
             _world.Draw(gameTime);
         }

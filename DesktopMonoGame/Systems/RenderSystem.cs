@@ -1,9 +1,11 @@
 ﻿using DesktopMonoGame.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using MonoGame.Extended.Entities.Systems;
 using MonoGame.Extended.Sprites;
+using MonoGame.Extended.ViewportAdapters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,11 +28,18 @@ namespace DesktopMonoGame.Systems
 
         public override void Draw(GameTime gameTime)
         {
-            _spriteBatch.Begin();
+            OrthographicCamera cam = CruZ.Instance().Camera;
+            ViewportAdapter adapter = CruZ.Instance().ViewportAdapter;
+
+            Matrix transformMat =
+                Matrix.CreateTranslation(adapter.VirtualWidth / 2, adapter.VirtualHeight / 2, 0) *
+                cam.GetViewMatrix();
+
+            _spriteBatch.Begin(transformMatrix: transformMat);
             foreach (var entityId in ActiveEntities)
             {
                 var spriteRenderer = _spriteRendererMapper.Get(entityId);
-                _spriteBatch.Draw(spriteRenderer.Texture, new Rectangle(1, 1, 500, 500), Color.White);
+                _spriteBatch.Draw(spriteRenderer.Texture, new Rectangle(0, 0, 1280, 720), Color.White);
             }
             _spriteBatch.End();
         }
