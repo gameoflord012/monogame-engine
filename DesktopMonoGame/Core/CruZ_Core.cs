@@ -3,9 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
-using System.ComponentModel;
-using System.Runtime.ConstrainedExecution;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace CruZ
 {
@@ -27,7 +24,7 @@ namespace CruZ
             base.Initialize();
 
             Initialize_ECS();
-            GameInitialize();
+            Game_Initialize();
 
             ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 1280, 720);
             Camera = new OrthographicCamera(_viewportAdapter);
@@ -44,6 +41,7 @@ namespace CruZ
 
             Input_Update(gameTime);
             ECS_Update(gameTime);
+            Game_Update(gameTime);
 
             Camera.ZoomOut(-Input_ScrollDeltaValue() * (float)gameTime.ElapsedGameTime.TotalSeconds * 0.01f);
             if(_keyboardState.IsKeyDown(Keys.A))

@@ -16,6 +16,12 @@ namespace CruZ.Components
             Texture = Resource.Instance().LoadResource<Texture2D>(resourceName);
         }
 
+        public Vector3 GetRenderPosition()
+        {
+            var e = TransformEntity.GetEntity(this);
+            return e.Transform.Position;
+        }
+
         private Texture2D _texture;
     }
 }

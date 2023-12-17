@@ -33,7 +33,12 @@ namespace CruZ.Systems
             foreach (var entityId in ActiveEntities)
             {
                 var spriteRenderer = _spriteRendererMapper.Get(entityId);
-                _spriteBatch.Draw(spriteRenderer.Texture, new Rectangle(0, 0, 1280, 720), Color.White);
+
+                Vector2 renderPosition = new Vector2(
+                    spriteRenderer.GetRenderPosition().X, 
+                    spriteRenderer.GetRenderPosition().Y);
+
+                _spriteBatch.Draw(spriteRenderer.Texture, renderPosition, Color.White);
             }
             _spriteBatch.End();
         }

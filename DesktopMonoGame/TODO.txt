@@ -9,6 +9,8 @@
 		-There may be component constraint
 
 	TODO:
+		Seperate game logic from the core
+		Vector3 namespace crash between XNA framework and System numeric
 		Find Component in parent
 
 2. Transform editor
