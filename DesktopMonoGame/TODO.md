@@ -6,11 +6,18 @@
 	General rules or should be no rule at all :)
 		-The child behaviour depend on the property of parent
 		-There're can be exception ...
-		-There may be component constraint
+		-There may be component constraints
 
 	TODO:
-		Seperate game logic from the core
-		Vector3 namespace crash between XNA framework and System numeric
-		Find Component in parent
+		*Seperate game logic from the core
+			*Allow to add multiple game component
+
+		*Vector3 namespace clash between XNA framework and System numeric
+
+		Box2D intergration
+			PhysicBody Component
+			PhysicSystem
+
+		Child and parent Transform
 
 2. Transform editor

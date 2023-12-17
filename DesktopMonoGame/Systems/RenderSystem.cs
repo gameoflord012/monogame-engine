@@ -18,18 +18,13 @@ namespace CruZ.Systems
         {
             _spriteRendererMapper = mapperService.GetMapper<SpriteRenderer>();
             _spriteBatch = new SpriteBatch(CruZ.Instance().GraphicsDevice);
+            _core = CruZ.Instance();
         }
 
         public override void Draw(GameTime gameTime)
         {
-            OrthographicCamera cam = CruZ.Instance().Camera;
-            ViewportAdapter adapter = CruZ.Instance().ViewportAdapter;
 
-            Matrix transformMat =
-                Matrix.CreateTranslation(adapter.VirtualWidth / 2, adapter.VirtualHeight / 2, 0) *
-                cam.GetViewMatrix();
-
-            _spriteBatch.Begin(transformMatrix: transformMat);
+            _spriteBatch.Begin(transformMatrix: _core.RenderMatrix);
             foreach (var entityId in ActiveEntities)
             {
                 var spriteRenderer = _spriteRendererMapper.Get(entityId);
@@ -45,5 +40,6 @@ namespace CruZ.Systems
 
         SpriteBatch _spriteBatch;
         ComponentMapper<SpriteRenderer> _spriteRendererMapper;
+        CruZ _core;
     }
 }

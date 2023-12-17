@@ -1,7 +1,5 @@
-﻿using CruZ.Singletons;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Entities;
 
 namespace CruZ.Components
 {

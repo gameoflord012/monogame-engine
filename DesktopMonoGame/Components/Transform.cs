@@ -4,7 +4,12 @@ namespace CruZ.Components
 {
     public class Transform
     {
-        public Vector3 Position
+        public Transform()
+        {
+            _translateMatrix = Matrix4x4.CreateTranslation(0, 0, 0);
+        }
+
+        public Microsoft.Xna.Framework.Vector3 Position
         {
             get
             {
@@ -12,7 +17,7 @@ namespace CruZ.Components
             }
             set
             {
-                _translateMatrix = Matrix4x4.CreateTranslation(value);
+                _translateMatrix = Matrix4x4.CreateTranslation(new Vector3(value.X, value.Y, value.Z));
             }
         }
 

@@ -1,3 +1,5 @@
 ﻿
-using var game = CruZ.CruZ.Instance();
-game.Run();
+using FirstDesktopGame;
+
+new MyGame().Run();
+
