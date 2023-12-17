@@ -1,4 +1,4 @@
-﻿using DesktopMonoGame.Systems;
+﻿using CruZ.Systems;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Entities;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesktopMonoGame
+namespace CruZ
 {
     internal partial class CruZ
     {

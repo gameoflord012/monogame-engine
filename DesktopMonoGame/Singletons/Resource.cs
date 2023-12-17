@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesktopMonoGame.Singletons
+namespace CruZ.Singletons
 {
     internal class Resource
     {

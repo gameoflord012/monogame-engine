@@ -1,0 +1,14 @@
+﻿1. Transform component
+	Some component may need properties from other component. For example:
+		-Sprite renderer may need transform component
+		-Godot body need box collider from child component
+
+	General rules or should be no rule at all :)
+		-The child behaviour depend on the property of parent
+		-There're can be exception ...
+		-There may be component constraint
+
+	TODO:
+		Find Component in parent
+
+2. Transform editor

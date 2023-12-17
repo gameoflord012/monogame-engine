@@ -1,13 +1,9 @@
-﻿using DesktopMonoGame.Singletons;
+﻿using CruZ.Singletons;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mime;
-using System.Text;
-using System.Threading.Tasks;
+using MonoGame.Extended.Entities;
 
-namespace DesktopMonoGame.Components
+namespace CruZ.Components
 {
     internal class SpriteRenderer
     {

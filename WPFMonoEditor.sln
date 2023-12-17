@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFMonoEditor", "WPFMonoEdi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesktopMonoGame", "DesktopMonoGame\DesktopMonoGame.csproj", "{7AF75212-A35F-4264-9894-E59EE7E0D49C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{EB9EBE25-0F3B-462B-ADE0-DFA9C801476E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{EB9EBE25-0F3B-462B-ADE0-DFA9C801476E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0F2F4912-08B4-4D9F-B539-38D47D02D2E3} = {0F2F4912-08B4-4D9F-B539-38D47D02D2E3}
+		{7AF75212-A35F-4264-9894-E59EE7E0D49C} = {7AF75212-A35F-4264-9894-E59EE7E0D49C}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Runtime.ConstrainedExecution;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace DesktopMonoGame
+namespace CruZ
 {
     internal partial class CruZ : Game
     {

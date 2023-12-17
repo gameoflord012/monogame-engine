@@ -1,12 +1,21 @@
+using MonoGame.Extended.Entities;
+using CruZ.Components;
+
 namespace Test
 {
     [TestClass]
-    public class UnitTest1
+    public class ComponentTest
     {
-        [TestMethod]
-        public void TestMethod1()
+        World _w;
+
+        public ComponentTest()
         {
-            Assert.IsFalse(true);
+            _w = new WorldBuilder().Build();
+        }
+        [TestMethod]
+        public void CreateTransformEntity()
+        {
+            TransformEntity e = _w.CreateTransformEntity();
         }
     }
 }

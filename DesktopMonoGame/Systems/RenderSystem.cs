@@ -1,18 +1,12 @@
-﻿using DesktopMonoGame.Components;
+﻿using CruZ.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using MonoGame.Extended.Entities.Systems;
-using MonoGame.Extended.Sprites;
 using MonoGame.Extended.ViewportAdapters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DesktopMonoGame.Systems
+namespace CruZ.Systems
 {
     internal class RenderSystem : EntityDrawSystem
     {
