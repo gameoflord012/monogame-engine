@@ -14,7 +14,9 @@
 
 		*Vector3 namespace clash between XNA framework and System numeric
 
-		Box2D intergration
+		Animation system
+
+		Box2D intergration - dont need it yet
 			PhysicBody Component
 			PhysicSystem
 
