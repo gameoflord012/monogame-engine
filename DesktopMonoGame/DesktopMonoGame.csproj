@@ -24,13 +24,20 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Box2D.NetStandard" Version="2.4.7-alpha" />
-    <PackageReference Include="MonoGame.Extended.Entities" Version="3.8.0" />
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Exception\" />
-    <Folder Include="NewFolder\" />
+    <ProjectReference Include="..\MonoGame.Extended\src\cs\MonoGame.Extended.Animations\MonoGame.Extended.Animations.csproj" />
+    <ProjectReference Include="..\MonoGame.Extended\src\cs\MonoGame.Extended.Entities\MonoGame.Extended.Entities.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Content\image.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\player.sf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />

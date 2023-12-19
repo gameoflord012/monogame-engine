@@ -16,8 +16,10 @@ namespace CruZ
         private void Initialize()
         {
             _world = new WorldBuilder().
-                AddSystem(new RenderSystem()).
-                AddSystem(new PhysicSystem()).Build();
+                AddSystem(new SpriteSystem()).
+                AddSystem(new AnimatedSystem()).
+                AddSystem(new PhysicSystem()).
+                Build();
         }
 
         private void Update(GameTime gameTime)

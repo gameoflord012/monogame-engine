@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace CruZ
 {
-    internal class CruZ_Input
+    public class CruZ_Input
     {
         CruZ _core;
         public CruZ_Input(CruZ core)

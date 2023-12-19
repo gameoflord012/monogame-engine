@@ -10,8 +10,9 @@ namespace CruZ
 {
     public delegate void CruZ_InitializeDelegate();
     public delegate void CruZ_UpdateDelegate(GameTime gameTime);
+    public delegate void CruZ_LoadContentDelegate();
 
-    internal partial class CruZ : Game
+    public partial class CruZ : Game
     {
         private CruZ()
         {
@@ -23,6 +24,12 @@ namespace CruZ
             _ecs = new CruZ_ECS(this);
             _graphics = new GraphicsDeviceManager(this);
             
+        }
+
+        protected override void LoadContent()
+        {
+            base.LoadContent();
+            OnLoadContent.Invoke();
         }
 
         protected override void Initialize()
@@ -60,6 +67,7 @@ namespace CruZ
         public event CruZ_InitializeDelegate OnInitialize;
         public event CruZ_UpdateDelegate OnUpdate;
         public event CruZ_UpdateDelegate OnDraw;
+        public event CruZ_LoadContentDelegate OnLoadContent;
         public OrthographicCamera Camera { get => _camera; set => _camera = value; }
         public ViewportAdapter ViewportAdapter { get => _viewportAdapter; set => _viewportAdapter = value; }
         public CruZ_Input Input { get => _input; }

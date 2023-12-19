@@ -1,16 +1,12 @@
 ﻿using CruZ.Components;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using MonoGame.Extended.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading.Tasks.Sources;
 
 namespace CruZ
 {
-    abstract class CruZ_App
+    public abstract class CruZ_App
     {
         public CruZ_App()
         {
@@ -18,6 +14,11 @@ namespace CruZ
 
             _core.OnInitialize += Initialize;
             _core.OnUpdate += Update;
+            _core.OnLoadContent += LoadContent;
+        }
+
+        protected virtual void LoadContent()
+        {
         }
 
         public void Run()
@@ -28,7 +29,7 @@ namespace CruZ
         public virtual void Initialize()
         {
             _entity = _core.World.CreateTransformEntity();
-            _entity.AddComponent(new SpriteRenderer("image"));
+            _entity.AddComponent(new SpriteComponent("image"));
         }
 
         public virtual void Update(GameTime gameTime)
@@ -38,5 +39,9 @@ namespace CruZ
 
         TransformEntity _entity;
         CruZ _core;
+
+        public CruZ Core { get => _core; }
+        public World World { get => _core.World; }
+        public ContentManager Content { get => _core.Content; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CruZ
 {
-    internal partial class CruZ
+    public partial class CruZ
     {
         private static CruZ _instance;
         public static CruZ Instance()
