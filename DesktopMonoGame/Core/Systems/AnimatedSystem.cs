@@ -23,13 +23,10 @@ namespace CruZ.Systems
 
         public void Draw(GameTime gameTime)
         {
-
-            _spriteBatch.Begin(transformMatrix: _core.RenderMatrix);
             foreach (var animatedSprite in this.GetAllComponents(_spriteRendererMapper))
             {
-                animatedSprite.Draw(_spriteBatch);
+                animatedSprite.Draw(_spriteBatch, _core.TotalMatrix);
             }
-            _spriteBatch.End();
         }
 
         public virtual void Update(GameTime gameTime) 

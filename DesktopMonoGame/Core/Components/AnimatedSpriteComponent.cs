@@ -5,7 +5,7 @@ using MonoGame.Extended.Sprites;
 
 namespace CruZ.Components
 {
-    public class AnimatedSpriteComponent : ISpriteBatchDrawable, IUpdateable
+    public class AnimatedSpriteComponent : ISpriteBatchDrawable, IUpdateable, IComponentAddedCallback
     {
         public AnimatedSpriteComponent(SpriteSheet spriteShit)
         {
@@ -19,10 +19,11 @@ namespace CruZ.Components
             return e.Transform.Position;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Matrix transformMatrix)
         {
-            Vector2 renderPosition = new(GetRenderPosition().X, GetRenderPosition().Y);
-            spriteBatch.Draw(_animatedSprite, renderPosition);
+            spriteBatch.Begin(transformMatrix: _attachedEntity.Transform.TotalMatrix * transformMatrix);
+            spriteBatch.Draw(_animatedSprite, Vector2.Zero);
+            spriteBatch.End();
         }
 
         public void Update(GameTime gameTime)
@@ -30,9 +31,16 @@ namespace CruZ.Components
             _animatedSprite.Update(gameTime);
         }
 
+        public void OnComponentAdded(TransformEntity entity)
+        {
+            _attachedEntity = entity;
+        }
+
         MonoGame.Extended.Sprites.AnimatedSprite _animatedSprite;
         SpriteSheet _spriteSheet;
         public SpriteSheet SpriteSheed { get => _spriteSheet; set => _spriteSheet = value; }
         public AnimatedSprite AnimatedSprite { get => _animatedSprite; }
+
+        private TransformEntity _attachedEntity;
     }
 }

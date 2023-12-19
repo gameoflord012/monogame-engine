@@ -72,12 +72,10 @@ namespace CruZ
         public ViewportAdapter ViewportAdapter { get => _viewportAdapter; set => _viewportAdapter = value; }
         public CruZ_Input Input { get => _input; }
         public World World { get => _ecs.World; }
-        public Matrix RenderMatrix { 
-            get => 
-                Matrix.CreateTranslation(_viewportAdapter.VirtualWidth / 2, _viewportAdapter.VirtualHeight / 2, 0) * 
-                _camera.GetViewMatrix(); 
-        }
+        public Matrix TotalMatrix { get =>  WorldMatrix * ViewMatrix; }
 
+        public Matrix ViewMatrix { get => _camera.GetViewMatrix(); }
+        public Matrix WorldMatrix { get => Matrix.CreateTranslation(_viewportAdapter.VirtualWidth / 2, _viewportAdapter.VirtualHeight / 2, 0); }
         private CruZ_ECS _ecs;
         private CruZ_Input _input;
         private GraphicsDeviceManager _graphics;

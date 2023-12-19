@@ -17,27 +17,16 @@ namespace CruZ
             _core.OnLoadContent += LoadContent;
         }
 
-        protected virtual void LoadContent()
-        {
-        }
+        protected virtual void LoadContent() { }
 
         public void Run()
         {
             _core.Run();
         }
 
-        public virtual void Initialize()
-        {
-            _entity = _core.World.CreateTransformEntity();
-            _entity.AddComponent(new SpriteComponent("image"));
-        }
+        public virtual void Initialize() { }
 
-        public virtual void Update(GameTime gameTime)
-        {
-            _entity.Transform.Position -= Vector3.UnitX;
-        }
-
-        TransformEntity _entity;
+        public virtual void Update(GameTime gameTime) { }
         CruZ _core;
 
         public CruZ Core { get => _core; }

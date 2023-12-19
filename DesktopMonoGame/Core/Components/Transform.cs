@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+﻿using Microsoft.Xna.Framework;
 
 namespace CruZ.Components
 {
@@ -6,10 +6,11 @@ namespace CruZ.Components
     {
         public Transform()
         {
-            _translateMatrix = Matrix4x4.CreateTranslation(0, 0, 0);
+            _translateMatrix = Matrix.CreateTranslation(0, 0, 0);
+            _scaleMatrix = Matrix.Identity;
         }
 
-        public Microsoft.Xna.Framework.Vector3 Position
+        public Vector3 Position
         {
             get
             {
@@ -17,11 +18,29 @@ namespace CruZ.Components
             }
             set
             {
-                _translateMatrix = Matrix4x4.CreateTranslation(new Vector3(value.X, value.Y, value.Z));
+                _translateMatrix = Matrix.CreateTranslation(new Vector3(value.X, value.Y, value.Z));
             }
         }
 
-        Matrix4x4 _translateMatrix;
-        Matrix4x4 _rotationMatrix;
+        public Vector3 Scale
+        {
+            get
+            {
+                return new Vector3(_scaleMatrix.M11, _scaleMatrix.M22, _scaleMatrix.M33);
+            }
+            set
+            {
+                _scaleMatrix = Matrix.CreateScale(value.X, value.Y, value.Z);
+            }
+        }
+
+        public Matrix TotalMatrix { get => _scaleMatrix * _translateMatrix; }
+        public Matrix TranslateMatrix { get => _translateMatrix; set => _translateMatrix = value; }
+        public Matrix RotationMatrix { get => _rotationMatrix; set => _rotationMatrix = value; }
+        public Matrix ScaleMatrix { get => _scaleMatrix; set => _scaleMatrix = value; }
+
+        Matrix _translateMatrix;
+        Matrix _scaleMatrix;
+        Matrix _rotationMatrix;
     }
 }

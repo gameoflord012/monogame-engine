@@ -19,7 +19,10 @@
 				Problem is: it find .xnb file in the root Content directory
 					Nah problem fixed, get newest version
 				
-			AnimatedSpriteComponent
+			*AnimatedSpriteComponent
+
+			Scaleable Transform
+			Serialization System
 
 		Box2D intergration - dont need it yet
 			PhysicBody Component

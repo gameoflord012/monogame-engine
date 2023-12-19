@@ -21,6 +21,12 @@ namespace CruZ.Components
             Entity.Attach(component);
             _entityDict[component] = this;
 
+            if (component is IComponentAddedCallback)
+            {
+                var callback = component as IComponentAddedCallback;
+                callback.OnComponentAdded(this);
+            }
+
             return this;
         }
 

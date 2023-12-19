@@ -23,11 +23,11 @@ namespace CruZ.Systems
         public void Draw(GameTime gameTime)
         {
 
-            _spriteBatch.Begin(transformMatrix: _core.RenderMatrix);
+            _spriteBatch.Begin(transformMatrix: _core.TotalMatrix);
             foreach (var entityId in ActiveEntities)
             {
                 var spriteRenderer = _spriteRendererMapper.Get(entityId);
-                spriteRenderer.Draw(_spriteBatch);
+                spriteRenderer.Draw(_spriteBatch, _core.TotalMatrix);
             }
             _spriteBatch.End();
         }

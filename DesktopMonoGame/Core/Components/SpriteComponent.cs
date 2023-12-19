@@ -20,7 +20,7 @@ namespace CruZ.Components
             return e.Transform.Position;
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch, Matrix transformMatrix)
         {
             Vector2 renderPosition = new(GetRenderPosition().X, GetRenderPosition().Y);
             spriteBatch.Draw(Texture, renderPosition, Color.White);
