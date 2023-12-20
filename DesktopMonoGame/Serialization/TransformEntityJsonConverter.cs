@@ -20,14 +20,14 @@ namespace CruZ.Serialization
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            JObject jObject = JObject.FromObject(value);
+            var type = value.GetType();
 
             writer.WriteStartObject();
             {
                 var transformEntity = (TransformEntity)value;
 
                 writer.WritePropertyName("Transform");
-                serializer.Serialize(writer, jObject.GetValue("Transform"));
+                serializer.Serialize(writer, type.GetProperty("Transform").GetValue(value));
 
                 writer.WritePropertyName("Components");
                 writer.WriteStartArray();
@@ -36,7 +36,7 @@ namespace CruZ.Serialization
                     {
                         writer.WriteStartObject();
                         writer.WritePropertyName(pair.Key.ToString());
-                        serializer.Serialize(writer, pair.Value);
+                        serializer.Serialize(writer, pair.Value, pair.Key);
                         writer.WriteEnd();
                     }
                 }

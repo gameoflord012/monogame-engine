@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace CruZ.Components
 {
-    public class SpriteComponent : ISpriteBatchDrawable
+    public partial class SpriteComponent : ISpriteBatchDrawable
     {
         public SpriteComponent() { }
         public SpriteComponent(string resourceName) { LoadTexture(resourceName); }
@@ -14,6 +14,7 @@ namespace CruZ.Components
 
         public void LoadTexture(string resourceName)
         {
+            _resourceName = resourceName;
             Texture = Resource.Instance().LoadResource<Texture2D>(resourceName);
         }
 
@@ -36,5 +37,6 @@ namespace CruZ.Components
         }
 
         private Texture2D _texture;
+        private string _resourceName;
     }
 }

@@ -2,6 +2,7 @@
 using CruZ.Serialization;
 using MonoGame.Extended.Entities;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using System.Runtime.Serialization;
@@ -17,6 +18,8 @@ namespace CruZ.Demos
     {
         public class Example
         {
+            public Example(int a) { }
+
             private int a = 1;
             public List<int> b = new() { 1, 2, 3, 4, 5, 6 };
             int c = 2;
@@ -36,7 +39,10 @@ namespace CruZ.Demos
             base.Initialize();
 
             var te = Core.World.CreateTransformEntity();
-            te.AddComponent(new SpriteComponent());
+            var sp = new SpriteComponent("image");
+            var ex = new Example(1);
+
+            te.AddComponent(new SpriteComponent("image"));
             te.AddComponent(new String("halloboys"));
 
             //te.AddComponent(new AnimatedSpriteComponent(null));
@@ -44,9 +50,17 @@ namespace CruZ.Demos
             string json = JsonConvert.SerializeObject(
                 te,
                 Newtonsoft.Json.Formatting.Indented,
+                new SerializableJsonConverter(),
                 new TransformEntityJsonConverter());
 
+
             Console.Write(json);
+            //json = JsonConvert.SerializeObject(ex);
+            //ex = JsonConvert.DeserializeObject<Example>(json);
+
+            te = JsonConvert.DeserializeObject<TransformEntity>(json,
+                new SerializableJsonConverter());
+
         }
     }
 }
