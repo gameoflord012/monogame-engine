@@ -20,6 +20,7 @@ namespace CruZ.Components
         {
             Entity.Attach(component);
             _entityDict[component] = this;
+            _addedComponents.Add(typeof(T), component);
 
             if (component is IComponentAddedCallback)
             {
@@ -35,6 +36,7 @@ namespace CruZ.Components
 
         Entity _entity;
         Transform _transform;
+        Dictionary<Type, object> _addedComponents = new();
 
         public static TransformEntity GetEntity(object component)
         {
@@ -44,6 +46,11 @@ namespace CruZ.Components
             }
             else
                 return _entityDict[component];
+        }
+
+        public static KeyValuePair<Type, object>[] GetAllComponents(TransformEntity e)
+        {
+            return e._addedComponents.ToArray();
         }
 
         private static Dictionary<object, TransformEntity> _entityDict = new();

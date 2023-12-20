@@ -2,7 +2,7 @@
   "profiles": {
     "Demos": {
       "commandName": "Project",
-      "commandLineArgs": "demo1"
+      "commandLineArgs": "SerializeDemo"
     }
   }
 }

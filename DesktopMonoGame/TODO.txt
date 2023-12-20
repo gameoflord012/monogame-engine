@@ -21,8 +21,21 @@
 				
 			*AnimatedSpriteComponent
 
-			Scaleable Transform
+			*Scaleable Transform
+
 			Serialization System
+				Serialize Entity
+					When entity is serialize
+						Output all component data
+							Get all components from an entity
+
+					When entity is deserilize
+						read all component data and loaded to entity
+
+				Scene Structure
+					Get all component in enttiy?
+					1 Scene include many entity?
+					Entity Serialization
 
 		Box2D intergration - dont need it yet
 			PhysicBody Component

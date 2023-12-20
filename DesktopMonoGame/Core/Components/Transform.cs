@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Newtonsoft.Json;
+using System.Xml.Serialization;
 
 namespace CruZ.Components
 {
@@ -34,9 +36,13 @@ namespace CruZ.Components
             }
         }
 
+        [JsonIgnore]
         public Matrix TotalMatrix { get => _scaleMatrix * _translateMatrix; }
+        [JsonIgnore]
         public Matrix TranslateMatrix { get => _translateMatrix; set => _translateMatrix = value; }
+        [JsonIgnore]
         public Matrix RotationMatrix { get => _rotationMatrix; set => _rotationMatrix = value; }
+        [JsonIgnore]
         public Matrix ScaleMatrix { get => _scaleMatrix; set => _scaleMatrix = value; }
 
         Matrix _translateMatrix;

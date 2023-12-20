@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
+using System.Xml.Serialization;
 
 namespace CruZ.Components
 {
@@ -7,6 +9,7 @@ namespace CruZ.Components
     {
         public SpriteComponent() { }
         public SpriteComponent(string resourceName) { LoadTexture(resourceName); }
+
         public Texture2D Texture { get => _texture; set => _texture = value; }
 
         public void LoadTexture(string resourceName)
@@ -22,6 +25,12 @@ namespace CruZ.Components
 
         public virtual void Draw(SpriteBatch spriteBatch, Matrix transformMatrix)
         {
+            if(Texture == null)
+            {
+                Trace.TraceWarning("Texture is unloaded, draw will not execute");
+                return;
+            }
+
             Vector2 renderPosition = new(GetRenderPosition().X, GetRenderPosition().Y);
             spriteBatch.Draw(Texture, renderPosition, Color.White);
         }
