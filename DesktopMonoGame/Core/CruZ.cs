@@ -4,13 +4,14 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using MonoGame.Extended.ViewportAdapters;
+using System;
 using System.Diagnostics;
 
 namespace CruZ
 {
-    public delegate void CruZ_InitializeDelegate();
     public delegate void CruZ_UpdateDelegate(GameTime gameTime);
-    public delegate void CruZ_LoadContentDelegate();
+    public delegate void ActionDelegate();
+    public delegate void OnExitingDelegate(object sender, EventArgs args);
 
     public partial class CruZ : Game
     {
@@ -24,6 +25,18 @@ namespace CruZ
             _ecs = new CruZ_ECS(this);
             _graphics = new GraphicsDeviceManager(this);
             
+        }
+
+        protected override void EndRun()
+        {
+            base.EndRun();
+            OnEndRun?.Invoke();
+        }
+
+        protected override void OnExiting(object sender, EventArgs args)
+        {
+            base.OnExiting(sender, args);
+            OnExit.Invoke(sender, args);
         }
 
         protected override void LoadContent()
@@ -55,6 +68,7 @@ namespace CruZ
 
             OnUpdate?.Invoke(gameTime);
             base.Update(gameTime);
+
         }
 
         protected override void Draw(GameTime gameTime)
@@ -64,10 +78,13 @@ namespace CruZ
             OnDraw?.Invoke(gameTime);
         }
 
-        public event CruZ_InitializeDelegate OnInitialize;
+        public event ActionDelegate OnInitialize;
+        public event ActionDelegate OnLoadContent;
+        public event ActionDelegate OnEndRun;
+        public event OnExitingDelegate OnExit;
+
         public event CruZ_UpdateDelegate OnUpdate;
         public event CruZ_UpdateDelegate OnDraw;
-        public event CruZ_LoadContentDelegate OnLoadContent;
         public OrthographicCamera Camera { get => _camera; set => _camera = value; }
         public ViewportAdapter ViewportAdapter { get => _viewportAdapter; set => _viewportAdapter = value; }
         public CruZ_Input Input { get => _input; }

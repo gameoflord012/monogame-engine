@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CruZ.Components
 {
-    public class TransformEntity
+    public partial class TransformEntity
     {
         public TransformEntity(Entity e)
         {
@@ -18,9 +18,16 @@ namespace CruZ.Components
 
         public TransformEntity AddComponent<T> (T component) where T : class
         {
-            Entity.Attach(component);
+            AddComponent(component, typeof(T));
+
+            return this;
+        }
+
+        public TransformEntity AddComponent(object component, Type ty)
+        {
+            Entity.Attach(component, ty);
             _entityDict[component] = this;
-            _addedComponents.Add(typeof(T), component);
+            _addedComponents.Add(ty, component);
 
             if (component is IComponentAddedCallback)
             {

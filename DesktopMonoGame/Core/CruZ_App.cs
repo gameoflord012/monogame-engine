@@ -15,7 +15,13 @@ namespace CruZ
             _core.OnInitialize += Initialize;
             _core.OnUpdate += Update;
             _core.OnLoadContent += LoadContent;
+            _core.OnEndRun += EndRun;
+            _core.OnExit += OnExit;
         }
+
+        protected virtual void OnExit(object sender, EventArgs args) { }
+
+        protected virtual void EndRun() { }
 
         protected virtual void LoadContent() { }
 

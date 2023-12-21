@@ -7,8 +7,8 @@ namespace CruZ.Serialization
     interface ISerializable
     {
         public ISerializable CreateDefault();
-        public void ReadJson(JObject jObject);
-        public JObject WriteJson();
+        public void ReadJson(JsonReader reader, JsonSerializer serializer);
+        public void WriteJson(JsonWriter writer, JsonSerializer serializer);
 
     }
 }

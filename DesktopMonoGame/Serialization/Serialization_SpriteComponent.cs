@@ -7,16 +7,19 @@ namespace CruZ.Components
 {
     public partial class SpriteComponent : ISerializable
     {
-        public void ReadJson(JObject jObject)
+        public void ReadJson(JsonReader reader, JsonSerializer serializer)
         {
-            _resourceName = jObject[nameof(_resourceName)].Value<string>();
+            var jObject = JObject.Load(reader);
+            _resourceName = jObject["_resourceName"].Value<string>();
+            LoadTexture(_resourceName);
         }
 
-        public JObject WriteJson()
+        public void WriteJson(JsonWriter writer, JsonSerializer serializer)
         {
-            JObject jObject = new JObject();
-            jObject[nameof(_resourceName)] = _resourceName;
-            return jObject;
+            writer.WriteStartObject();
+            writer.WritePropertyName("_resourceName");
+            writer.WriteValue(_resourceName);
+            writer.WriteEnd();
         }
 
         ISerializable ISerializable.CreateDefault()

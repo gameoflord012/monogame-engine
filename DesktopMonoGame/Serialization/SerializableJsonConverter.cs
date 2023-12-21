@@ -18,16 +18,14 @@ namespace CruZ.Serialization
             var uninitialObject = (ISerializable)FormatterServices.GetUninitializedObject(objectType);
             ISerializable value = uninitialObject.CreateDefault() ?? uninitialObject;
 
-            var jObject = JObject.Load(reader);
-            value.ReadJson(jObject);
-
+            value.ReadJson(reader, serializer);
             return value;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var serializable = (ISerializable)value;
-            serializable.WriteJson().WriteTo(writer);
+            serializable.WriteJson(writer, serializer);
         }
     }
 }

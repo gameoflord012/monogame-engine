@@ -1,5 +1,6 @@
 ﻿using MonoGame.Extended.Entities;
 using MonoGame.Extended.Entities.Systems;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -15,6 +16,12 @@ namespace CruZ.Components
             }
 
             yield break;
+        }
+
+        public static void Attach(this Entity e, object component, Type ty)
+        {
+            var mapper = e.ComponentManager.GetMapper(ty);
+            mapper.Put(e.Id, component);
         }
     }
 }

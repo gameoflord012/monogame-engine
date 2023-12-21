@@ -20,6 +20,8 @@ namespace MonoGame.Extended.Entities
         
         public BitVector32 ComponentBits => _entityManager.GetComponentBits(Id);
 
+        public ComponentManager ComponentManager => _componentManager;
+
         public void Attach<T>(T component)
             where T : class 
         {

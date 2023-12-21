@@ -25,15 +25,16 @@ namespace MonoGame.Extended.Entities
 
         public Action<int> ComponentsChanged;
 
-        private ComponentMapper<T> CreateMapperForType<T>(int componentTypeId)
-            where T : class
+        private ComponentMapper CreateMapperForType(int componentTypeId, Type ty)
         {
             // TODO: We can probably do better than this without a huge performance penalty by creating our own bit vector that grows after the first 32 bits.
             if (componentTypeId >= 32)
                 throw new InvalidOperationException("Component type limit exceeded. We currently only allow 32 component types for performance reasons.");
 
-            var mapper = new ComponentMapper<T>(componentTypeId, ComponentsChanged);
+            var mapperClass = typeof(ComponentMapper<>).MakeGenericType(ty);
+            var mapper = (ComponentMapper)Activator.CreateInstance(mapperClass, componentTypeId, ComponentsChanged);
             _componentMappers[componentTypeId] = mapper;
+
             return mapper;
         }
 
@@ -45,12 +46,17 @@ namespace MonoGame.Extended.Entities
         public ComponentMapper<T> GetMapper<T>()
             where T : class
         {
-            var componentTypeId = GetComponentTypeId(typeof(T));
+            return (ComponentMapper<T>)GetMapper(typeof(T));
+        }
+
+        public ComponentMapper GetMapper(Type ty)
+        {
+            var componentTypeId = GetComponentTypeId(ty);
 
             if (_componentMappers[componentTypeId] != null)
-                return _componentMappers[componentTypeId] as ComponentMapper<T>;
+                return _componentMappers[componentTypeId] as ComponentMapper;
 
-            return CreateMapperForType<T>(componentTypeId);
+            return CreateMapperForType(componentTypeId, ty);
         }
 
         public int GetComponentTypeId(Type type)

@@ -1,16 +1,9 @@
-﻿using CruZ.Components;
+﻿using Box2D.NetStandard.Common;
+using CruZ.Components;
 using CruZ.Serialization;
+using Microsoft.Xna.Framework;
 using MonoGame.Extended.Entities;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
-using System.Diagnostics;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Xml;
-using System.Xml.Schema;
-using System.Xml.Serialization;
-
 namespace CruZ.Demos
 {
     [DemoName("SerializeDemo")]
@@ -31,36 +24,71 @@ namespace CruZ.Demos
         public SerializationDemo()
         {
             Core.Run();
-            
         }
 
         public override void Initialize()
         {
             base.Initialize();
+            var json = "";
+            _settings = new();
+            _settings.Converters.Add(new SerializableJsonConverter());
+            _settings.Formatting = Newtonsoft.Json.Formatting.Indented;
 
-            var te = Core.World.CreateTransformEntity();
-            var sp = new SpriteComponent("image");
-            var ex = new Example(1);
+            if (!File.Exists("transform.json"))
+            {
+                File.Create("transform.json").Close();
+            }
 
-            te.AddComponent(new SpriteComponent("image"));
-            te.AddComponent(new String("halloboys"));
+            bool loaded = false;
+            using (var reader = new StreamReader("transform.json"))
+            {
+                var s = reader.ReadToEnd();
 
-            //te.AddComponent(new AnimatedSpriteComponent(null));
+                if (String.IsNullOrEmpty(s))
+                {
+                    _te = Core.World.CreateTransformEntity();
+                    _te.AddComponent(new SpriteComponent("image"));
+                    _te.AddComponent(new String("halloboys"));
+                    _te.AddComponent(new Example(1));
 
-            string json = JsonConvert.SerializeObject(
-                te,
-                Newtonsoft.Json.Formatting.Indented,
-                new SerializableJsonConverter(),
-                new TransformEntityJsonConverter());
+                    json = JsonConvert.SerializeObject(_te, _settings);
 
+                    Console.WriteLine("Created new Entity");
+                    Console.WriteLine(json);
+                }
+                else
+                {
+                    json = s;
+                    Console.WriteLine("Json loaded");
+                    Console.WriteLine(json);
+                    loaded = true;
+                }
+            }
 
-            Console.Write(json);
-            //json = JsonConvert.SerializeObject(ex);
-            //ex = JsonConvert.DeserializeObject<Example>(json);
-
-            te = JsonConvert.DeserializeObject<TransformEntity>(json,
-                new SerializableJsonConverter());
-
+            if (loaded)
+            {
+                _te = JsonConvert.DeserializeObject<TransformEntity>(json, _settings);
+            }
+            
         }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            _te.Transform.Position += Vector3.UnitX;
+        }
+
+        protected override void OnExit(object sender, EventArgs args)
+        {
+            using (var writer = new StreamWriter("transform.json", false))
+            {
+                var json = JsonConvert.SerializeObject(_te, _settings);
+                writer.Write(json);
+            }
+        }
+
+        TransformEntity _te;
+        JsonSerializerSettings _settings;
     }
 }

@@ -13,6 +13,8 @@ namespace MonoGame.Extended.Entities
 
         public int Id { get; }
         public Type ComponentType { get; }
+
+        public abstract void Put(int entityId, object component);
         public abstract bool Has(int entityId);
         public abstract void Delete(int entityId);
     }
@@ -34,9 +36,9 @@ namespace MonoGame.Extended.Entities
 
         public Bag<T> Components { get; }
 
-        public void Put(int entityId, T component)
+        public override void Put(int entityId, object component)
         {
-            Components[entityId] = component;
+            Components[entityId] = (T)component;
             _onCompositionChanged(entityId);
             OnPut?.Invoke(entityId);
         }
