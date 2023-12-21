@@ -2,7 +2,7 @@
   "profiles": {
     "Demos": {
       "commandName": "Project",
-      "commandLineArgs": "SerializeDemo"
+      "commandLineArgs": "ImguiIntegrationDemo"
     }
   }
 }

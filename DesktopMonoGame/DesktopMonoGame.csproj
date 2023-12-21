@@ -5,6 +5,7 @@
     <RollForward>Major</RollForward>
     <PublishReadyToRun>false</PublishReadyToRun>
     <TieredCompilation>false</TieredCompilation>
+	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -28,6 +29,7 @@
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ImguiWrapper\ImguiWrapper.csproj" />
     <ProjectReference Include="..\MonoGame.Extended\src\cs\MonoGame.Extended.Animations\MonoGame.Extended.Animations.csproj" />
     <ProjectReference Include="..\MonoGame.Extended\src\cs\MonoGame.Extended.Entities\MonoGame.Extended.Entities.csproj" />
   </ItemGroup>
