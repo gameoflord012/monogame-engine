@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Demos": {
+      "commandName": "Project",
+      "commandLineArgs": "ImguiIntegrationDemo",
+      "nativeDebugging": true
+    }
+  }
+}

@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
 	  <OutputType>WinExe</OutputType>
 	  <TargetFramework>net6.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,8 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DesktopMonoGame\DesktopMonoGame.csproj" />
-    <ProjectReference Include="..\WPFMonoEditor\WPFMonoEditor.csproj" />
+    <ProjectReference Include="..\src\CruZ_Engine\CurZ_Core.csproj" />
   </ItemGroup>
 
 </Project>
