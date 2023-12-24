@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGame.Extended.Entities"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImGui.NET", "src\Folks\ImGui.NET\src\ImGui.NET\ImGui.NET.csproj", "{BF58F1B0-3BB7-4C2F-B6C5-015A8B519A06}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CruZ_Editor", "src\CruZ_Editor\CruZ_Editor.csproj", "{7C625E4F-2BD8-4BCC-A942-67042F64422E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +115,18 @@ Global
 		{BF58F1B0-3BB7-4C2F-B6C5-015A8B519A06}.Release|x64.Build.0 = Release|Any CPU
 		{BF58F1B0-3BB7-4C2F-B6C5-015A8B519A06}.Release|x86.ActiveCfg = Release|Any CPU
 		{BF58F1B0-3BB7-4C2F-B6C5-015A8B519A06}.Release|x86.Build.0 = Release|Any CPU
+		{7C625E4F-2BD8-4BCC-A942-67042F64422E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C625E4F-2BD8-4BCC-A942-67042F64422E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C625E4F-2BD8-4BCC-A942-67042F64422E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7C625E4F-2BD8-4BCC-A942-67042F64422E}.Debug|x64.Build.0 = Debug|Any CPU
+		{7C625E4F-2BD8-4BCC-A942-67042F64422E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7C625E4F-2BD8-4BCC-A942-67042F64422E}.Debug|x86.Build.0 = Debug|Any CPU
+		{7C625E4F-2BD8-4BCC-A942-67042F64422E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C625E4F-2BD8-4BCC-A942-67042F64422E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C625E4F-2BD8-4BCC-A942-67042F64422E}.Release|x64.ActiveCfg = Release|Any CPU
+		{7C625E4F-2BD8-4BCC-A942-67042F64422E}.Release|x64.Build.0 = Release|Any CPU
+		{7C625E4F-2BD8-4BCC-A942-67042F64422E}.Release|x86.ActiveCfg = Release|Any CPU
+		{7C625E4F-2BD8-4BCC-A942-67042F64422E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
