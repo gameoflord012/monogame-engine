@@ -1,2 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿namespace CruZ.Editor
+{
+    public class Program
+    {
+        [STAThread]
+        public static void Main(string[] args)
+        {
+            var editor = new CruZ_Editor();
+        }
+    }
+}

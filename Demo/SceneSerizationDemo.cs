@@ -67,7 +67,6 @@ namespace CruZ.Demos
             {
                 _scene = JsonConvert.DeserializeObject<GameScene>(json, _settings);
             }
-            
         }
 
         public override void Update(GameTime gameTime)

@@ -17,6 +17,8 @@ namespace CruZ
             _core.OnLoadContent += LoadContent;
             _core.OnEndRun += EndRun;
             _core.OnExit += OnExit;
+
+            Core.Run();
         }
 
         protected virtual void OnExit(object sender, EventArgs args) { }

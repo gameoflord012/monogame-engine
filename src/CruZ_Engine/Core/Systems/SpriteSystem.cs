@@ -22,7 +22,7 @@ namespace CruZ.Systems
 
         public void Draw(GameTime gameTime)
         {
-            foreach (var entityId in ActiveEntities)
+            foreach (var entityId in this.GetActiveEntities())
             {
                 var spriteRenderer = _spriteRendererMapper.Get(entityId);
                 spriteRenderer.Draw(_spriteBatch, _core.TotalMatrix);

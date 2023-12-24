@@ -10,7 +10,7 @@ namespace CruZ.Components
     {
         public static IEnumerable<T> GetAllComponents<T>(this EntitySystem system, ComponentMapper<T> mapper) where T : class
         {
-            foreach(var e in system.ActiveEntities)
+            foreach(var e in system.GetActiveEntities())
             {
                 yield return mapper.Get(e);
             }
