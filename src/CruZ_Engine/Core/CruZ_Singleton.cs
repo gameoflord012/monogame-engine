@@ -16,8 +16,8 @@ namespace CruZ
             return _instance;
         }
 
-        public static readonly int VIRTUAL_WIDTH = 1080;
-        public static readonly int VIRTUAL_HEIGHT = 1920;
+        public static readonly int VIRTUAL_WIDTH = 1920;
+        public static readonly int VIRTUAL_HEIGHT = 1080;
         public static readonly string CONTENT_ROOT = "Content";
     }
 }

@@ -18,7 +18,6 @@ namespace CruZ
         {
             Content.RootDirectory = CONTENT_ROOT;
             IsMouseVisible = true;
-            Window.AllowUserResizing = true;
 
             _input = new CruZ_Input(this);
             _ecs = new CruZ_ECS(this);
@@ -70,8 +69,8 @@ namespace CruZ
 
         protected override void Draw(GameTime gameTime)
         {
+            base.Draw(gameTime);
             GraphicsDevice.Clear(Color.Blue);
-
             OnDraw?.Invoke(gameTime);
         }
 

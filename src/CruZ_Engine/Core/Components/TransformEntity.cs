@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CruZ.Components
 {
-    public partial class TransformEntity
+    public partial class TransformEntity : IEquatable<TransformEntity>
     {
         public TransformEntity(Entity e)
         {
@@ -58,6 +59,11 @@ namespace CruZ.Components
         public static KeyValuePair<Type, object>[] GetAllComponents(TransformEntity e)
         {
             return e._addedComponents.ToArray();
+        }
+
+        public bool Equals(TransformEntity other)
+        {
+            return other.Entity.Id == Entity.Id;
         }
 
         private static Dictionary<object, TransformEntity> _entityDict = new();

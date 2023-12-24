@@ -14,7 +14,7 @@ namespace CruZ.Demos
             foreach(var demoClass in demoClasses)
             {
                 var attribute = demoClass.GetCustomAttribute(typeof(DemoNameAttribute)) as DemoNameAttribute;
-                if(attribute != null && attribute.DemoName == /*args[0]*/ "ImguiIntegrationDemo")
+                if(attribute != null && attribute.DemoName == args[0])
                 {
                     var demoConstructor = demoClass.GetConstructor(Type.EmptyTypes);
 
