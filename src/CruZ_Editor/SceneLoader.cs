@@ -15,17 +15,19 @@ namespace CruZ.Editor
             }    
         }
 
-        public static bool LoadScene(GameScene scene)
+        public static void LoadScene(GameScene scene)
         {
-            if (_currentScene != null) return false;
+            if (_currentScene != null)
+            {
+                UnloadCurrentScene();
+            }
+
             _currentScene = scene;
 
             foreach(var e in scene.Entities)
             {
                 e.IsActive = true;
             }
-
-            return true;
         }
 
         public static void UnloadCurrentScene()
