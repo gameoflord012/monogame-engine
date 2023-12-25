@@ -1,8 +1,9 @@
-﻿using ImGuiNET;
+﻿using CurZ.Editor;
+using ImGuiNET;
 
 namespace CruZ.Editor
 {
-    class LoggingView
+    class LoggingView : IViewDrawCallback
     {
         public void DrawView()
         {

@@ -1,8 +1,10 @@
-﻿using ImGuiNET;
+﻿using CurZ.Editor;
+using ImGuiNET;
+using Newtonsoft.Json;
 
 namespace CruZ.Editor
 {
-    public class SceneSelectionView
+    public class SceneSelectionView : IViewDrawCallback
     {
         public void DrawView()
         {
@@ -41,10 +43,16 @@ namespace CruZ.Editor
                     var files = Dialog.SelectSceneFiles();
                     foreach (var file in files)
                     {
-                        if (!_sceneFiles.Contains(file)) _sceneFiles.Add(file);
+                        AddSceneFile(file);
                     }
                 }
             }
+        }
+
+        private void AddSceneFile(string file)
+        {
+            if (!_sceneFiles.Contains(file)) _sceneFiles.Add(file);
+            _sceneFiles.Sort();
         }
 
         private void LoadScene(string scenePath)
@@ -55,6 +63,7 @@ namespace CruZ.Editor
             SceneLoader.LoadScene(scene);
         }
 
+        [JsonProperty]
         private List<string> _sceneFiles = new();
     }
 }
