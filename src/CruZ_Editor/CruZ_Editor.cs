@@ -8,9 +8,11 @@ namespace CruZ.Editor
         public override void Initialize()
         {
             base.Initialize();
+
             _imgui = new(Core);
             _imgui.RebuildFontAtlas();
             _sceneView = new SceneSelectionView();
+            _logView = new LoggingView();
 
             Core.OnDraw += Draw;
         }
@@ -19,10 +21,12 @@ namespace CruZ.Editor
         {
             _imgui.BeforeLayout(gameTime);
             _sceneView.DrawView();
+            _logView.DrawView();
             _imgui.AfterLayout();
         }
 
         private ImGuiRenderer _imgui;
         private SceneSelectionView _sceneView;
+        private LoggingView _logView;
     }
 }

@@ -69,6 +69,13 @@ namespace CruZ.Components
             return other.Entity.Id == Entity.Id;
         }
 
+        public void RemoveFromWorld()
+        {
+            IsActive = false;
+            CruZ.Instance().World.DestroyEntity(Entity);
+            Entity = null;
+        }
+
         private static Dictionary<object, TransformEntity> _entityDict = new();
         private static Dictionary<int, TransformEntity> _transformEntityDict = new();
 

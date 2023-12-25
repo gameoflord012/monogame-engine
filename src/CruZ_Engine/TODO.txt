@@ -19,26 +19,26 @@
 				Problem is: it find .xnb file in the root Content directory
 					Nah problem fixed, get newest version
 				
-			*AnimatedSpriteComponent
+		*AnimatedSpriteComponent
 
-			*Scaleable Transform
+		*Scaleable Transform
 
-			*Serialization System
-				Serialize Entity
-					When entity is serialize
-						Output all component data
-							Get all components from an entity
+		*Serialization System
+			Serialize Entity
+				When entity is serialize
+					Output all component data
+						Get all components from an entity
 
-					When entity is deserilize
-						read all component data and loaded to entity
+				When entity is deserilize
+					read all component data and loaded to entity
 						
-				Scene Serialization system
-					Load data from scene file
-					save scene to data
+		*Scene Serialization system
+			Load data from scene file
+			save scene to data
 
-				Integrate Imgui - Scene editor
-					set up imguizmo and transform manipulation
-					gamelogic should seperate from editor logic
+		Save view state
+		simple transform and rect manipulation
+		inspector?
 
 		Box2D intergration - dont need it yet
 			PhysicBody Component

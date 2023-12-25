@@ -11,8 +11,13 @@ namespace CruZ.Editor
             using(var fileReader = new StreamReader(scenePath))
             {
                 var json = fileReader.ReadToEnd();
-                return JsonConvert.DeserializeObject<GameScene>(json, _settings);
-            }    
+                GameScene? scene = JsonConvert.DeserializeObject<GameScene>(json, _settings);
+
+                if (scene == null) return null;
+
+                scene.Name = Path.GetFileName(scenePath);
+                return scene;
+            }
         }
 
         public static void LoadScene(GameScene scene)
@@ -28,6 +33,8 @@ namespace CruZ.Editor
             {
                 e.IsActive = true;
             }
+
+            Logging.PushMsg(String.Format("Scene {0} Loaded", scene.Name));
         }
 
         public static void UnloadCurrentScene()
@@ -36,12 +43,13 @@ namespace CruZ.Editor
 
             foreach (var e in _currentScene.Entities)
             {
-                e.IsActive = false;
+                e.RemoveFromWorld();
             }
 
+            Logging.PushMsg(String.Format("Scene {0} Unloaded", _currentScene.Name));
             _currentScene = null;
         }
-      
+
         static SceneLoader()
         {
             _settings = new();
