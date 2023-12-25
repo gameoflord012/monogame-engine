@@ -1,20 +1,41 @@
-﻿using MonoGame.Extended.Entities;
+﻿using Microsoft.Xna.Framework;
+using MonoGame.Extended.Entities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CruZ.Components
 {
+    public class RectTransform
+    {
+        public void SetWidth(float x)
+        {
+            Size = new Vector2(x, Size.Y);
+        }
+
+        public void SetHeight(float y)
+        {
+            Size = new Vector2(Size.X, y);
+        }
+
+        public Vector2 GetUpperLeft()
+        {
+            return new Vector2(-Size.X / 2f, -Size.Y / 2f);
+        }
+
+        public Vector2 Center = Vector2.Zero;
+        public Vector2 Size = Vector2.One;
+    }
+
     public partial class TransformEntity : IEquatable<TransformEntity>
     {
         public TransformEntity(Entity e)
         {
             Entity = e;
             Transform = new();
+            RectTransform = new();
             _transformEntityDict[e.Id] = this;
         }
 
@@ -82,10 +103,12 @@ namespace CruZ.Components
         public Transform Transform { get => _transform; set => _transform = value; }
         public Entity Entity { get => _entity; set => _entity = value; }
         public bool IsActive { get => _isActive; set => _isActive = value; }
+        public RectTransform RectTransform { get => _rectTransform; set => _rectTransform = value; }
 
         bool _isActive;
         Entity _entity;
         Transform _transform;
+        RectTransform _rectTransform;
         Dictionary<Type, object> _addedComponents = new();
     }
 }

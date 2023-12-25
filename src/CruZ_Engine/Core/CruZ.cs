@@ -49,6 +49,7 @@ namespace CruZ
 
             ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
             Camera = new OrthographicCamera(_viewportAdapter);
+            Camera.Position = new(-VIRTUAL_WIDTH / 2f, -VIRTUAL_HEIGHT / 2f);
         }
 
         protected override void Update(GameTime gameTime)
@@ -85,9 +86,7 @@ namespace CruZ
         public ViewportAdapter ViewportAdapter { get => _viewportAdapter; set => _viewportAdapter = value; }
         public CruZ_Input Input { get => _input; }
         public World World { get => _ecs.World; }
-        public Matrix TotalMatrix { get =>  WorldMatrix * ViewMatrix; }
         public Matrix ViewMatrix { get => _camera.GetViewMatrix(); }
-        public Matrix WorldMatrix { get => Matrix.CreateTranslation(_viewportAdapter.VirtualWidth / 2, _viewportAdapter.VirtualHeight / 2, 0); }
         
         private CruZ_ECS _ecs;
         private CruZ_Input _input;

@@ -25,7 +25,7 @@ namespace CruZ.Systems
             foreach (var entityId in this.GetActiveEntities())
             {
                 var spriteRenderer = _spriteRendererMapper.Get(entityId);
-                spriteRenderer.Draw(_spriteBatch, _core.TotalMatrix);
+                spriteRenderer.Draw(_spriteBatch, _core.ViewMatrix); 
             }
         }
 

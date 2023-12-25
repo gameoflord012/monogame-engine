@@ -25,7 +25,7 @@ namespace CruZ.Systems
         {
             foreach (var animatedSprite in this.GetAllComponents(_spriteRendererMapper))
             {
-                animatedSprite.Draw(_spriteBatch, _core.TotalMatrix);
+                animatedSprite.Draw(_spriteBatch, _core.ViewMatrix);
             }
         }
 
