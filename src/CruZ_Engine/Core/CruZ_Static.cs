@@ -36,8 +36,8 @@ namespace CruZ
 
         public static Point CoordinateToPoint(Vector2 coord)
         {
-            var normalize_x = 1f + coord.X / VIRTUAL_WIDTH;
-            var normalize_y = 1f - coord.Y / VIRTUAL_HEIGHT;
+            var normalize_x = 0.5f + coord.X / VIRTUAL_WIDTH;
+            var normalize_y = 0.5f - coord.Y / VIRTUAL_HEIGHT;
 
             return new(
                 FunMath.RoundInt(normalize_x * Viewport.Width),

@@ -1,6 +1,8 @@
 ﻿using CruZ.UI;
+using CurZ;
 using CurZ.Editor;
 using Microsoft.Xna.Framework;
+using MonoGame.Extended.Entities;
 
 namespace CruZ.Editor
 {
@@ -13,35 +15,71 @@ namespace CruZ.Editor
             _imgui = new(Core);
             _imgui.RebuildFontAtlas();
 
-            _sceneView = new SceneSelectionView();
-            _logView = new LoggingView();
-
-            _views.Add(_sceneView);
-            _views.Add(_logView);
-
-            for(int i = 0; i < _views.Count; i++)
-            {
-                var loadedView = GlobalSerializer.DeserializeFromFile(
-                    GetSerializePath(_views[i]), _views[i].GetType());
-
-                if (loadedView == null) continue;
-                _views[i] = loadedView;
-            }
-
-            Core.OnDraw += Draw;
+            CreateViews();
+            LoadViewCaches(_viewsToAdd);
         }
 
-        private void Draw(GameTime gameTime)
+        private void CreateViews()
+        {
+            SceneManager.OnSceneLoaded += CreateEntityViews;
+            SceneManager.OnCurrentSceneUnLoaded += RemoveEntityViews;
+
+            AddView(new SceneSelectionView());
+            AddView(new LoggingView());
+        }
+
+        private void CreateEntityViews(GameScene scene)
+        {
+            foreach(var e in scene.Entities)
+            {
+                var view = new EntityView();
+                view.Binding = e;
+                AddView(view);
+            }
+        }
+        private void RemoveEntityViews(GameScene scene)
+        {
+            _viewsToRemove.AddRange(_views.Where(v => v is EntityView));
+        }
+
+
+        private void LoadViewCaches(List<object> viewsToLoad)
+        {
+            for (int i = 0; i < viewsToLoad.Count; i++)
+            {
+                var loadedView = GlobalSerializer.DeserializeFromFile(
+                    GetSerializePath(viewsToLoad[i]), viewsToLoad[i].GetType());
+
+                if (loadedView == null) continue;
+                viewsToLoad[i] = loadedView;
+            }
+        }
+
+        protected override void Draw(GameTime gameTime)
         {
             _imgui.BeforeLayout(gameTime);
-
             foreach (var view in _views)
             {
                 if (view is IViewDrawCallback)
                     ((IViewDrawCallback)view).DrawView();
             }
-
             _imgui.AfterLayout();
+
+            UpdateViewList();
+        }
+
+        private void UpdateViewList()
+        {
+            _views = _views.Except(_viewsToAdd).Except(_viewsToRemove).ToList();
+            _views.AddRange(_viewsToAdd);
+
+            _viewsToAdd.Clear();
+            _viewsToRemove.Clear();
+        }
+
+        private void AddView(IViewDrawCallback view)
+        {
+            _viewsToAdd.Add(view);
         }
 
         protected override void OnExit(object sender, EventArgs args)
@@ -58,9 +96,8 @@ namespace CruZ.Editor
         }
 
         private ImGuiRenderer _imgui;
-        private SceneSelectionView _sceneView;
-        private LoggingView _logView;
-
         private List<object> _views = new();
+        private List<object> _viewsToAdd = new();
+        private List<object> _viewsToRemove = new();
     }
 }

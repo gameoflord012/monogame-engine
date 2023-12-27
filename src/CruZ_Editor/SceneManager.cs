@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace CruZ.Editor
 {
-    public static class SceneLoader
+    public static class SceneManager
     {
         public static GameScene? GetSceneFromFile(string scenePath)
         {
@@ -34,6 +34,7 @@ namespace CruZ.Editor
                 e.IsActive = true;
             }
 
+            OnSceneLoaded?.Invoke(_currentScene);
             Logging.PushMsg(String.Format("Scene {0} Loaded", scene.Name));
         }
 
@@ -46,11 +47,14 @@ namespace CruZ.Editor
                 e.RemoveFromWorld();
             }
 
-            Logging.PushMsg(String.Format("Scene {0} Unloaded", _currentScene.Name));
+            var unloadScene = _currentScene;
             _currentScene = null;
+
+            OnCurrentSceneUnLoaded?.Invoke(unloadScene);
+            Logging.PushMsg(String.Format("Scene {0} Unloaded", unloadScene.Name));
         }
 
-        static SceneLoader()
+        static SceneManager()
         {
             _settings = new();
             _settings.Converters.Add(new SerializableJsonConverter());
@@ -59,5 +63,8 @@ namespace CruZ.Editor
 
         static JsonSerializerSettings _settings;
         static GameScene? _currentScene;
+
+        public static event Action<GameScene>? OnSceneLoaded;
+        public static event Action<GameScene>? OnCurrentSceneUnLoaded;
     }
 }

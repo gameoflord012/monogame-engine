@@ -46,22 +46,12 @@ namespace CruZ
         {
             base.Initialize();
             OnInitialize?.Invoke();
-
-            ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
-            Camera = new OrthographicCamera(_viewportAdapter);
-            Camera.Position = new(-VIRTUAL_WIDTH / 2f, -VIRTUAL_HEIGHT / 2f);
         }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            Camera.ZoomOut(-Input.ScrollDeltaValue() * (float)gameTime.ElapsedGameTime.TotalSeconds * 0.01f);
-            if (Input.KeyboardState.IsKeyDown(Keys.A))
-            {
-                Camera.Position -= Vector2.UnitX;
-            }
 
             OnUpdate?.Invoke(gameTime);
             base.Update(gameTime);
@@ -79,19 +69,16 @@ namespace CruZ
         public event ActionDelegate OnLoadContent;
         public event ActionDelegate OnEndRun;
         public event OnExitingDelegate OnExit;
-
         public event CruZ_UpdateDelegate OnUpdate;
         public event CruZ_UpdateDelegate OnDraw;
-        public OrthographicCamera Camera { get => _camera; set => _camera = value; }
+
         public ViewportAdapter ViewportAdapter { get => _viewportAdapter; set => _viewportAdapter = value; }
         public CruZ_Input Input { get => _input; }
         public World World { get => _ecs.World; }
-        public Matrix ViewMatrix { get => _camera.GetViewMatrix(); }
         
         private CruZ_ECS _ecs;
         private CruZ_Input _input;
         private GraphicsDeviceManager _graphics;
-        private OrthographicCamera _camera;
         private ViewportAdapter _viewportAdapter;
     }
 }

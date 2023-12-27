@@ -1,5 +1,5 @@
 ﻿
 using FirstDesktopGame;
 
-new MyGame().Run();
+new MyGame();
 

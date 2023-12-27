@@ -57,10 +57,10 @@ namespace CruZ.Editor
 
         private void LoadScene(string scenePath)
         {
-            var scene = SceneLoader.GetSceneFromFile(scenePath);
+            var scene = SceneManager.GetSceneFromFile(scenePath);
             if (scene == null) return;
 
-            SceneLoader.LoadScene(scene);
+            SceneManager.LoadScene(scene);
         }
 
         [JsonProperty]

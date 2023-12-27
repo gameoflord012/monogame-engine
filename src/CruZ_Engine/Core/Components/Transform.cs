@@ -8,45 +8,20 @@ namespace CruZ.Components
     {
         public Transform()
         {
-            _translateMatrix = Matrix.CreateTranslation(0, 0, 0);
-            _scaleMatrix = Matrix.Identity;
-        }
-
-        public Vector3 Position
-        {
-            get
-            {
-                return _translateMatrix.Translation;
-            }
-            set
-            {
-                _translateMatrix = Matrix.CreateTranslation(new Vector3(value.X, value.Y, value.Z));
-            }
-        }
-
-        public Vector3 Scale
-        {
-            get
-            {
-                return new Vector3(_scaleMatrix.M11, _scaleMatrix.M22, _scaleMatrix.M33);
-            }
-            set
-            {
-                _scaleMatrix = Matrix.CreateScale(value.X, value.Y, value.Z);
-            }
+            _position = Vector3.Zero;
+            _scale = Vector3.One;
         }
 
         [JsonIgnore]
-        public Matrix TotalMatrix { get => _scaleMatrix * _translateMatrix; }
+        public Matrix TotalMatrix { get => ScaleMatrix * TranslateMatrix; }
         [JsonIgnore]
-        public Matrix TranslateMatrix { get => _translateMatrix; set => _translateMatrix = value; }
+        public Matrix TranslateMatrix { get => Matrix.CreateTranslation(_position); }
         [JsonIgnore]
-        public Matrix RotationMatrix { get => _rotationMatrix; set => _rotationMatrix = value; }
-        [JsonIgnore]
-        public Matrix ScaleMatrix { get => _scaleMatrix; set => _scaleMatrix = value; }
+        public Matrix ScaleMatrix { get => Matrix.CreateScale(_scale); }
+        public Vector3 Position { get => _position; set => _position = value; }
+        public Vector3 Scale { get => _scale; set => _scale = value; }
 
-        Matrix _translateMatrix;
-        Matrix _scaleMatrix;
-        Matrix _rotationMatrix;
+        Vector3 _position;
+        Vector3 _scale;
     }
 }

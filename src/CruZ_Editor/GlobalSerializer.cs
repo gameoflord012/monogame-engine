@@ -9,6 +9,7 @@ namespace CurZ.Editor
         {
             _settings = new();
             _settings.Formatting = Formatting.Indented;
+            _settings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
         }
 
         public static string SerializeToFile(object o, string filePath)

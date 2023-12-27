@@ -1,33 +1,56 @@
 ﻿using Microsoft.Xna.Framework;
+using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CruZ.Components
 {
-    public class RectTransform
-    {
-        public void SetWidth(float x)
-        {
-            Size = new Vector2(x, Size.Y);
-        }
+    //public class RectTransform
+    //{
+    //    public void SetWidth(float x)
+    //    {
+    //        Size = new Vector2(x, Size.Y);
+    //    }
 
-        public void SetHeight(float y)
-        {
-            Size = new Vector2(Size.X, y);
-        }
+    //    public void SetHeight(float y)
+    //    {
+    //        Size = new Vector2(Size.X, y);
+    //    }
 
-        public Vector2 GetUpperLeft()
-        {
-            return new Vector2(-Size.X / 2f, -Size.Y / 2f);
-        }
+    //    public Vector2 GetUpperLeft()
+    //    {
+    //        return new Vector2(-Size.X / 2f, -Size.Y / 2f);
+    //    }
 
-        public Vector2 Center = Vector2.Zero;
-        public Vector2 Size = Vector2.One;
-    }
+    //    public Matrix GetOffsetMatrix()
+    //    {
+    //        return Matrix.CreateTranslation(
+    //                CenterOffset.X,
+    //                CenterOffset.Y, 0);
+    //    }
+
+    //    public Vector2 CenterOffset = Vector2.Zero;
+    //    public Vector2 Size = Vector2.One;
+    //}
+
+    //public struct RectCoord
+    //{
+    //    public float X;
+    //    public float Y;
+
+    //    public float Width;
+    //    public float Height;
+
+    //    public Vector2 TopLeft { get => new Vector2(X, Y); set { X = value.X; Y = value.Y; } }
+    //    public Vector2 BottomRight { get => new Vector2(X + Width, Y - Height); }
+    //    public Vector2 Center { get => new Vector2(X + Width / 2f, Y - Height / 2f); }
+    //    public Vector2 Size { get => new Vector2(Width, Height); set { Width = value.X; Height = value.Y; } }
+    //}
 
     public partial class TransformEntity : IEquatable<TransformEntity>
     {
@@ -35,11 +58,12 @@ namespace CruZ.Components
         {
             Entity = e;
             Transform = new();
-            RectTransform = new();
+            //RectTransform = new();
             _transformEntityDict[e.Id] = this;
         }
 
-        public TransformEntity AddComponent<T> (T component) where T : class
+        #region Entities
+        public TransformEntity AddComponent<T>(T component) where T : class
         {
             AddComponent(component, typeof(T));
 
@@ -49,7 +73,7 @@ namespace CruZ.Components
         public TransformEntity AddComponent(object component, Type ty)
         {
             Entity.Attach(component, ty);
-            
+
             _entityDict[component] = this;
             _addedComponents.Add(ty, component);
 
@@ -84,11 +108,7 @@ namespace CruZ.Components
             Trace.Assert(_transformEntityDict.ContainsKey(eId));
             return _transformEntityDict[eId];
         }
-
-        public bool Equals(TransformEntity other)
-        {
-            return other.Entity.Id == Entity.Id;
-        }
+        #endregion
 
         public void RemoveFromWorld()
         {
@@ -97,18 +117,36 @@ namespace CruZ.Components
             Entity = null;
         }
 
+        public bool Equals(TransformEntity other)
+        {
+            return other.Entity.Id == Entity.Id;
+        }
+
+        //public RectCoord GetRectCoord()
+        //{
+        //    RectCoord rectCoord;
+
+        //    rectCoord.Width = RectTransform.Size.X * Transform.Scale.X;
+        //    rectCoord.Height = RectTransform.Size.Y * Transform.Scale.Y;
+
+        //    rectCoord.X = Transform.Position.X - rectCoord.Width / 2f - RectTransform.CenterOffset.X;
+        //    rectCoord.Y = Transform.Position.Y + rectCoord.Height / 2f - RectTransform.CenterOffset.Y;
+
+        //    return rectCoord;
+        //}
+
         private static Dictionary<object, TransformEntity> _entityDict = new();
         private static Dictionary<int, TransformEntity> _transformEntityDict = new();
 
         public Transform Transform { get => _transform; set => _transform = value; }
         public Entity Entity { get => _entity; set => _entity = value; }
         public bool IsActive { get => _isActive; set => _isActive = value; }
-        public RectTransform RectTransform { get => _rectTransform; set => _rectTransform = value; }
+        //public RectTransform RectTransform { get => _rectTransform; set => _rectTransform = value; }
 
         bool _isActive;
         Entity _entity;
         Transform _transform;
-        RectTransform _rectTransform;
+        //RectTransform _rectTransform;
         Dictionary<Type, object> _addedComponents = new();
     }
 }

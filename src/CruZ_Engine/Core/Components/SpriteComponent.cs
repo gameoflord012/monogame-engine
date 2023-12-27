@@ -20,17 +20,16 @@ namespace CruZ.Components
             _resourceName = resourceName;
             Texture = Resource.Instance().LoadResource<Texture2D>(resourceName);
 
-            UpdateRectTransform();
+            //UpdateRectTransform();
         }
 
-        private void UpdateRectTransform()
-        {
-            if (_e == null) return;
-            _e.RectTransform.SetWidth(960);
-            _e.RectTransform.SetHeight(540);
-            //_e.RectTransform.SetWidth(  (float)Texture.Width   / CruZ.Viewport.Width *   CruZ.VIRTUAL_WIDTH);
-            //_e.RectTransform.SetHeight( (float)Texture.Height  / CruZ.Viewport.Height *  CruZ.VIRTUAL_HEIGHT);
-        }
+        //private void UpdateRectTransform()
+        //{
+        //    if (_e == null) return;
+
+        //    _e.RectTransform.SetWidth((float)Texture.Width / CruZ.Viewport.Width * CruZ.VIRTUAL_WIDTH);
+        //    _e.RectTransform.SetHeight((float)Texture.Height / CruZ.Viewport.Height * CruZ.VIRTUAL_HEIGHT);
+        //}
 
         public virtual void Draw(SpriteBatch spriteBatch, Matrix viewMatrix)
         {
@@ -40,9 +39,9 @@ namespace CruZ.Components
                 return;
             }
 
-            var scale = new Vector2(
-                _e.RectTransform.Size.X / Texture.Width,
-                _e.RectTransform.Size.Y / Texture.Height);
+            //var scale = new Vector2(
+            //    _e.RectTransform.Size.X / Texture.Width,
+            //    _e.RectTransform.Size.Y / Texture.Height);
 
             spriteBatch.Begin(transformMatrix: 
                 _e.Transform.TotalMatrix * viewMatrix);
@@ -54,7 +53,7 @@ namespace CruZ.Components
                 Color.White,
                 rotation: 0,
                 origin: Vector2.Zero,
-                scale: scale,
+                scale: new Vector2(_e.Transform.Scale.X, _e.Transform.Scale.Y),
                 effects: SpriteEffects.None,
                 layerDepth: 0);
 
@@ -64,7 +63,7 @@ namespace CruZ.Components
         public void OnComponentAdded(TransformEntity entity)
         {
             _e = entity;
-            UpdateRectTransform();
+            //UpdateRectTransform();
         }
 
         private Texture2D _texture;
