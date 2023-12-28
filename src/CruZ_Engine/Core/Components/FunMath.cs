@@ -1,4 +1,6 @@
-﻿namespace CruZ.Utility
+﻿using System.Numerics;
+
+namespace CruZ.Utility
 {
     public static class FunMath
     {

@@ -28,8 +28,8 @@ namespace CruZ.Demos
 
             _batch.Draw(
                 _texture,
-                position: Vector2.Zero,
-                null, Color.White, 0, Vector2.Zero,
+                position: Vector3.Zero,
+                null, Color.White, 0, Vector3.Zero,
                 scale: new Vector2(1, -1),
                 SpriteEffects.None, 0);
 

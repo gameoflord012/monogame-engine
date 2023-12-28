@@ -76,7 +76,7 @@ namespace CruZ.Demos
         {
             base.Update(gameTime);
 
-            _te.Transform.Position += Vector3.UnitX;
+            _te.Transform.Position += Microsoft.Xna.Framework.Vector3.UnitX;
         }
 
         protected override void OnExit(object sender, EventArgs args)

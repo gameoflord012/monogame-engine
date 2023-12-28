@@ -13,7 +13,7 @@ namespace CruZ.Components
             _animatedSprite = new AnimatedSprite(_spriteSheet);
         }
 
-        private Vector3 GetRenderPosition()
+        private Microsoft.Xna.Framework.Vector3 GetRenderPosition()
         {
             var e = TransformEntity.GetEntity(this);
             return e.Transform.Position;

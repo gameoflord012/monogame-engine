@@ -1,6 +1,7 @@
 ﻿using CruZ.UI;
 using CurZ;
 using CurZ.Editor;
+using ImGuiNET;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Entities;
 
@@ -26,6 +27,7 @@ namespace CruZ.Editor
 
             AddView(new SceneSelectionView());
             AddView(new LoggingView());
+            AddView(new CameraView());
         }
 
         private void CreateEntityViews(GameScene scene)
@@ -42,7 +44,6 @@ namespace CruZ.Editor
             _viewsToRemove.AddRange(_views.Where(v => v is EntityView));
         }
 
-
         private void LoadViewCaches(List<object> viewsToLoad)
         {
             for (int i = 0; i < viewsToLoad.Count; i++)
@@ -58,10 +59,14 @@ namespace CruZ.Editor
         protected override void Draw(GameTime gameTime)
         {
             _imgui.BeforeLayout(gameTime);
+
+            ImGui.DockSpaceOverViewport(ImGui.GetMainViewport(), ImGuiDockNodeFlags.PassthruCentralNode);
+            EntityView.InitializeWindow();
+
             foreach (var view in _views)
             {
                 if (view is IViewDrawCallback)
-                    ((IViewDrawCallback)view).DrawView();
+                    ((IViewDrawCallback)view).DrawView(gameTime);
             }
             _imgui.AfterLayout();
 
@@ -99,5 +104,8 @@ namespace CruZ.Editor
         private List<object> _views = new();
         private List<object> _viewsToAdd = new();
         private List<object> _viewsToRemove = new();
+        private static uint _dockSpaceId;
+
+        public static uint DockSpaceId { get => _dockSpaceId; }
     }
 }

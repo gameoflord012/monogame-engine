@@ -1,11 +1,12 @@
 ﻿using CurZ.Editor;
 using ImGuiNET;
+using Microsoft.Xna.Framework;
 
 namespace CruZ.Editor
 {
     class LoggingView : IViewDrawCallback
     {
-        public void DrawView()
+        public void DrawView(GameTime gameTime)
         {
             var bound = CruZ.Instance().GraphicsDevice.Viewport.Bounds;
 

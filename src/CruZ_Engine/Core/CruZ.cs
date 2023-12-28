@@ -61,7 +61,7 @@ namespace CruZ
         protected override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
-            GraphicsDevice.Clear(Color.Blue);
+            GraphicsDevice.Clear(Color.Gray);
             OnDraw?.Invoke(gameTime);
         }
 

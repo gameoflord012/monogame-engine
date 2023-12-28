@@ -2,11 +2,11 @@
   "Entities": [
     {
       "position": "10, 10, 0",
-      "scale": "1, 1, 1",
+      "scale": "1.5, 1.5, 1",
       "components": [
         {
           "CruZ.Components.SpriteComponent, CurZ_Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": {
-            "_resourceName": "image"
+            "_resourceName": "homelander"
           }
         },
         {

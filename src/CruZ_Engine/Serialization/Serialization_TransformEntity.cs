@@ -17,8 +17,8 @@ namespace CruZ.Components
         {
             var jObject = JObject.Load(reader);
 
-            Transform.Position = jObject["position"].ToObject<Vector3>(serializer);
-            Transform.Scale = jObject["scale"].ToObject<Vector3>(serializer);
+            Transform.Position = jObject["position"].ToObject<Microsoft.Xna.Framework.Vector3>(serializer);
+            Transform.Scale = jObject["scale"].ToObject<Microsoft.Xna.Framework.Vector3>(serializer);
 
             foreach (var comObj in jObject["components"].Cast<JObject>())
             {

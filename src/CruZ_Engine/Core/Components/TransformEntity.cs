@@ -14,17 +14,17 @@ namespace CruZ.Components
     //{
     //    public void SetWidth(float x)
     //    {
-    //        Size = new Vector2(x, Size.Y);
+    //        Size = new Vector3(x, Size.Y);
     //    }
 
     //    public void SetHeight(float y)
     //    {
-    //        Size = new Vector2(Size.X, y);
+    //        Size = new Vector3(Size.X, y);
     //    }
 
-    //    public Vector2 GetUpperLeft()
+    //    public Vector3 GetUpperLeft()
     //    {
-    //        return new Vector2(-Size.X / 2f, -Size.Y / 2f);
+    //        return new Vector3(-Size.X / 2f, -Size.Y / 2f);
     //    }
 
     //    public Matrix GetOffsetMatrix()
@@ -34,8 +34,8 @@ namespace CruZ.Components
     //                CenterOffset.Y, 0);
     //    }
 
-    //    public Vector2 CenterOffset = Vector2.Zero;
-    //    public Vector2 Size = Vector2.One;
+    //    public Vector3 CenterOffset = Vector3.Zero;
+    //    public Vector3 Size = Vector3.One;
     //}
 
     //public struct RectCoord
@@ -46,10 +46,10 @@ namespace CruZ.Components
     //    public float Width;
     //    public float Height;
 
-    //    public Vector2 TopLeft { get => new Vector2(X, Y); set { X = value.X; Y = value.Y; } }
-    //    public Vector2 BottomRight { get => new Vector2(X + Width, Y - Height); }
-    //    public Vector2 Center { get => new Vector2(X + Width / 2f, Y - Height / 2f); }
-    //    public Vector2 Size { get => new Vector2(Width, Height); set { Width = value.X; Height = value.Y; } }
+    //    public Vector3 TopLeft { get => new Vector3(X, Y); set { X = value.X; Y = value.Y; } }
+    //    public Vector3 BottomRight { get => new Vector3(X + Width, Y - Height); }
+    //    public Vector3 Center { get => new Vector3(X + Width / 2f, Y - Height / 2f); }
+    //    public Vector3 Size { get => new Vector3(Width, Height); set { Width = value.X; Height = value.Y; } }
     //}
 
     public partial class TransformEntity : IEquatable<TransformEntity>

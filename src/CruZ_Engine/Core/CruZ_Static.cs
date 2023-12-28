@@ -20,28 +20,7 @@ namespace CruZ
             return _instance;
         }
 
-        public static readonly int VIRTUAL_WIDTH = 1920;
-        public static readonly int VIRTUAL_HEIGHT = 1080;
         public static readonly string CONTENT_ROOT = "Content";
-
         public static Viewport Viewport { get => Instance().GraphicsDevice.Viewport; }
-
-        public static Vector2 PointToCoordinate(Point p)
-        {
-            var normalize_x = (2f * p.X / Viewport.Width) - 1f;
-            var normalize_y = 1f - (2f * p.Y / Viewport.Height);
-
-            return new(normalize_x * VIRTUAL_WIDTH, normalize_y * VIRTUAL_HEIGHT);
-        }
-
-        public static Point CoordinateToPoint(Vector2 coord)
-        {
-            var normalize_x = 0.5f + coord.X / VIRTUAL_WIDTH;
-            var normalize_y = 0.5f - coord.Y / VIRTUAL_HEIGHT;
-
-            return new(
-                FunMath.RoundInt(normalize_x * Viewport.Width),
-                FunMath.RoundInt(normalize_y * Viewport.Height));
-        }
     }
 }

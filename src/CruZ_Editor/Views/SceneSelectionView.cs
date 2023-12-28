@@ -1,15 +1,16 @@
 ﻿using CurZ.Editor;
 using ImGuiNET;
+using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 
 namespace CruZ.Editor
 {
     public class SceneSelectionView : IViewDrawCallback
     {
-        public void DrawView()
+        public void DrawView(GameTime gameTime)
         {
             ImGui.SetNextWindowSize(new System.Numerics.Vector2(400, 300), ImGuiCond.FirstUseEver);
-            ImGui.Begin("Scene Selection");
+            ImGui.Begin("Scene Selection", ImGuiWindowFlags.DockNodeHost);
 
             float sceneListWidth = ImGui.GetContentRegionAvail().X;
 

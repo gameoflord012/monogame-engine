@@ -25,15 +25,15 @@ namespace CruZ.Demos
 
             _animatedSprite.AnimatedSprite.Play("attack");
 
-            _entity.Transform.Position = Vector3.One;
+            _entity.Transform.Position = Microsoft.Xna.Framework.Vector3.One;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            _entity.Transform.Position -= Vector3.UnitX;
-            _entity.Transform.Scale += Vector3.One * 0.01f;
+            _entity.Transform.Position -= Microsoft.Xna.Framework.Vector3.UnitX;
+            _entity.Transform.Scale += Microsoft.Xna.Framework.Vector3.One * 0.01f;
         }
 
         protected override void LoadContent()

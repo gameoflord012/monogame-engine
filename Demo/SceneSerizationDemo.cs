@@ -39,12 +39,12 @@ namespace CruZ.Demos
                     var te1 = Core.World.CreateTransformEntity();
                     te1.AddComponent(new SpriteComponent("image"));
                     te1.AddComponent(new String("halloboys"));
-                    te1.Transform.Position = new Vector3(10, 10, 0);
+                    te1.Transform.Position = new Microsoft.Xna.Framework.Vector3(10, 10, 0);
 
                     var te2 = Core.World.CreateTransformEntity();
-                    te2.Transform.Position = new Vector3(-100, -100, 0);
+                    te2.Transform.Position = new Microsoft.Xna.Framework.Vector3(-100, -100, 0);
                     te2.AddComponent(new SpriteComponent("homelander"));
-                    te2.Transform.Scale = new Vector3(5f, 5f, 1);
+                    te2.Transform.Scale = new Microsoft.Xna.Framework.Vector3(5f, 5f, 1);
 
                     _scene.AddEntity(te1);
                     _scene.AddEntity(te2);

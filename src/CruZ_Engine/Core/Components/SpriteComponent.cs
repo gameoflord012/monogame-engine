@@ -39,7 +39,7 @@ namespace CruZ.Components
                 return;
             }
 
-            //var scale = new Vector2(
+            //var scale = new Vector3(
             //    _e.RectTransform.Size.X / Texture.Width,
             //    _e.RectTransform.Size.Y / Texture.Height);
 
@@ -48,7 +48,9 @@ namespace CruZ.Components
 
             spriteBatch.Draw(
                 Texture,
-                Vector2.Zero,
+                new Vector2(
+                    -Texture.Width / 2f * _e.Transform.Scale.X, 
+                    -Texture.Height / 2f * _e.Transform.Scale.Y),
                 sourceRectangle: null,
                 Color.White,
                 rotation: 0,
