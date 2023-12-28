@@ -9,7 +9,6 @@ namespace CruZ.Editor
     {
         public void DrawView(GameTime gameTime)
         {
-            ImGui.SetNextWindowSize(new System.Numerics.Vector2(400, 300), ImGuiCond.FirstUseEver);
             ImGui.Begin("Scene Selection", ImGuiWindowFlags.DockNodeHost);
 
             float sceneListWidth = ImGui.GetContentRegionAvail().X;
@@ -18,8 +17,39 @@ namespace CruZ.Editor
             ImGui.SameLine();
             AddSceneButton(sceneListWidth);
 
+            DrawSceneList(sceneListWidth);
+
+            if(ImGui.Button("Save Scene"))
+            {
+                SaveScene();
+            }
+
+            ImGui.End();
+        }
+
+        private void SaveScene()
+        {
+            SceneManager.SaveScene(SceneManager.CurrentScene, _savePath);
+        }
+
+        void AddSceneButton(float total_X)
+        {
+            string text = "Add Scene";
+            ImGui.SameLine(total_X - ImGui.CalcTextSize(text).X);
+            if (ImGui.Button(text))
+            {
+                var files = Dialog.SelectSceneFiles();
+                foreach (var file in files)
+                {
+                    AddSceneFile(file);
+                }
+            }
+        }
+
+        private void DrawSceneList(float sceneListWidth)
+        {
             ImGui.PushItemWidth(sceneListWidth);
-            if (ImGui.BeginListBox("", new System.Numerics.Vector2(sceneListWidth, ImGui.GetContentRegionAvail().Y)))
+            if (ImGui.BeginListBox(""))
             {
                 foreach (var file in _sceneFiles)
                 {
@@ -27,32 +57,18 @@ namespace CruZ.Editor
                     if (ImGui.Selectable(relative))
                     {
                         LoadScene(file);
+                        _savePath = file;
                     }
                 }
                 ImGui.EndListBox();
             }
             ImGui.PopItemWidth();
-
-            ImGui.End();
-
-            void AddSceneButton(float total_X)
-            {
-                string text = "Add Scene";
-                ImGui.SameLine(total_X - ImGui.CalcTextSize(text).X);
-                if (ImGui.Button(text))
-                {
-                    var files = Dialog.SelectSceneFiles();
-                    foreach (var file in files)
-                    {
-                        AddSceneFile(file);
-                    }
-                }
-            }
         }
 
         private void AddSceneFile(string file)
         {
             if (!_sceneFiles.Contains(file)) _sceneFiles.Add(file);
+            _sceneFiles.RemoveAll(f => string.IsNullOrEmpty(f));
             _sceneFiles.Sort();
         }
 
@@ -66,5 +82,6 @@ namespace CruZ.Editor
 
         [JsonProperty]
         private List<string> _sceneFiles = new();
+        private string _savePath = "";
     }
 }

@@ -22,7 +22,13 @@ namespace CruZ.Editor
             while (Main()._msgs.Count > Main()._maxMsg) Main()._msgs.RemoveAt(0);
             Main()._msgs.Add(msg);
         }
-        
+
+        public static void PushMsg(string fmt, params object[] args)
+        {
+            var msg = string.Format(fmt, args);
+            PushMsg(msg);
+        }
+
         public static string[] GetMsgs()
         {
             return Main()._msgs.ToArray();
