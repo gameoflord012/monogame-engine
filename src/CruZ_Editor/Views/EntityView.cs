@@ -38,8 +38,33 @@ namespace CruZ.Editor
             #endregion
 
             ImGui.Begin(ViewLabel);
-            DisplayCursorPosition();
 
+            DisplayCursorPosition();
+            if(IsSelected) DrawDragging();
+            DrawSelectButton();
+
+            ImGui.End();
+        }
+
+        private void DrawSelectButton()
+        {
+            ImGui.SetCursorPos(
+                GetEntityScreenPoint() + new System.Numerics.Vector2(-10, 10));
+
+            ImGui.PushStyleColor(
+                ImGuiCol.Text, 
+                new System.Numerics.Vector4(1, 0, 0, 1));
+
+            if(ImGui.RadioButton("select me", IsSelected))
+            {
+                CurrentSelected = IsSelected ? null :_binding;
+            }
+
+            ImGui.PopStyleColor();
+        }
+
+        private void DrawDragging()
+        {
             ImGui_DragThumb();
             if (ImGui.IsItemHovered() && ImGui.IsMouseClicked(0))
             {
@@ -54,18 +79,20 @@ namespace CruZ.Editor
             {
                 DoDragging();
             }
-
-            ImGui.End();
         }
 
         private void ImGui_DragThumb()
         {
             ImGui.SetCursorScreenPos(
-                Camera.Main.CoordinateToPoint(_binding.Transform.Position) -
-                new System.Numerics.Vector2(10, 10)
+                GetEntityScreenPoint() - new System.Numerics.Vector2(10, 10)
             );
 
             ImGui.RadioButton("##thumb", false);
+        }
+
+        private System.Numerics.Vector2 GetEntityScreenPoint()
+        {
+            return Camera.Main.CoordinateToPoint(_binding.Transform.Position);
         }
 
         private void DoDragging()
@@ -108,5 +135,8 @@ namespace CruZ.Editor
         public TransformEntity Binding { get => _binding; set => _binding = value; }
 
         bool _isDragging = false;
+        bool IsSelected => CurrentSelected == _binding;
+
+        public static TransformEntity? CurrentSelected;
     }
 }
