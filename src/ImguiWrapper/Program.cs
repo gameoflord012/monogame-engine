@@ -1,4 +1,4 @@
-﻿namespace CruZ.UI
+﻿namespace CruZ_Engine.UI
 {
     public static class Program
     {

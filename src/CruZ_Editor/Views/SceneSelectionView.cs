@@ -3,7 +3,7 @@ using ImGuiNET;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 
-namespace CruZ.Editor
+namespace CruZ_Engine.Editor
 {
     public class SceneSelectionView : IViewDrawCallback
     {

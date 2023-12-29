@@ -2,7 +2,7 @@
 using ImGuiNET;
 using Microsoft.Xna.Framework;
 
-namespace CruZ.Editor
+namespace CruZ_Engine.Editor
 {
     class LoggingView : IViewDrawCallback
     {

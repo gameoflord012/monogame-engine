@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CruZ.Demos
+namespace CruZ_Engine.Demos
 {
     [DemoName("SpriteBatchTest")]
     public class CameraDemo : CruZ_App

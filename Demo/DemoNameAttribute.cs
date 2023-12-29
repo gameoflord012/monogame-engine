@@ -1,4 +1,4 @@
-﻿namespace CruZ.Demos
+﻿namespace CruZ_Engine.Demos
 {
     [System.AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
     sealed class DemoNameAttribute : Attribute

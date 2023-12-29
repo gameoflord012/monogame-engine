@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Runtime.InteropServices;
 
-namespace CruZ.UI
+namespace CruZ_Engine.UI
 {
     /// <summary>
     /// ImGui renderer for use with XNA-likes (FNA & MonoGame)

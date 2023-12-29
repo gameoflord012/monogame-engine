@@ -1,11 +1,11 @@
-﻿using CruZ.UI;
+﻿using CruZ_Engine.UI;
 using CurZ;
 using CurZ.Editor;
 using ImGuiNET;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Entities;
 
-namespace CruZ.Editor
+namespace CruZ_Engine.Editor
 {
     class CruZ_Editor : CruZ_App
     {

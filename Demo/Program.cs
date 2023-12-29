@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace CruZ.Demos
+namespace CruZ_Engine.Demos
 {
     class Program
     {

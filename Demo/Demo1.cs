@@ -1,11 +1,11 @@
-﻿using CruZ.Components;
+﻿using CruZ_Engine.Components;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Entities;
 using MonoGame.Extended.Serialization;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Content;
 
-namespace CruZ.Demos
+namespace CruZ_Engine.Demos
 {
     [DemoName("demo1")]
     public class AnimatedSpriteDemo : CruZ_App

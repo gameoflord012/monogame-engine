@@ -1,10 +1,10 @@
-﻿using CruZ.UI;
+﻿using CruZ_Engine.UI;
 using ImGuiNET;
 using Microsoft.Xna.Framework;
 using Num = System.Numerics;
 
 
-namespace CruZ.Demos
+namespace CruZ_Engine.Demos
 {
     [DemoName("ImguiIntegrationDemo")]
     internal class ImguiIntegrationDemo : CruZ_App

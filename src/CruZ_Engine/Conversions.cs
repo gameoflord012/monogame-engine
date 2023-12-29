@@ -1,5 +1,5 @@
 ﻿using System.Numerics;
 
-namespace CruZ
+namespace CruZ_Engine
 {
 }

@@ -1,4 +1,4 @@
-﻿namespace CruZ.Editor
+﻿namespace CruZ_Engine.Editor
 {
     public class Program
     {

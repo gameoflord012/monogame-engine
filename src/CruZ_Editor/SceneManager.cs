@@ -1,8 +1,8 @@
-﻿using CruZ.Serialization;
+﻿using CruZ_Engine.Serialization;
 using CurZ;
 using Newtonsoft.Json;
 
-namespace CruZ.Editor
+namespace CruZ_Engine.Editor
 {
     public static class SceneManager
     {

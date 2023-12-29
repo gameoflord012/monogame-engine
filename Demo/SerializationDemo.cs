@@ -1,10 +1,10 @@
 ﻿using Box2D.NetStandard.Common;
-using CruZ.Components;
-using CruZ.Serialization;
+using CruZ_Engine.Components;
+using CruZ_Engine.Serialization;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Entities;
 using Newtonsoft.Json;
-namespace CruZ.Demos
+namespace CruZ_Engine.Demos
 {
     [DemoName("SerializeDemo")]
     public class SerializationDemo : CruZ_App

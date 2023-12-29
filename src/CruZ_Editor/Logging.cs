@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace CruZ.Editor
+namespace CruZ_Engine.Editor
 {
     public class Logging
     {
