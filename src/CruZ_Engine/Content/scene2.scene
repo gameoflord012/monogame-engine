@@ -1,7 +1,7 @@
 {
   "Entities": [
     {
-      "position": "10, 10, 0",
+      "position": "-534.6, 2.25003, 0",
       "scale": "1.5, 1.5, 1",
       "components": [
         {
@@ -14,5 +14,6 @@
         }
       ]
     }
-  ]
+  ],
+  "Name": "scene2.scene"
 }
